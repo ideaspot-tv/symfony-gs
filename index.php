@@ -8,20 +8,19 @@ require_once __DIR__ . '/vendor/autoload.php';
 // read request
 $request = Request::createFromGlobals();
 $uri = $request->getPathInfo();
-$foo = $request->get('foo', 'not set');
 
-// prepare response
-$response = new Response();
-$response->setContent(<<<EOT
-<html>
-<body>
-The URI requested is: <pre>$uri</pre><br>
-The value of the <pre>foo</pre> parameter is: <pre>$foo</pre>
-</body>
-</html>
-EOT);
-$response->setStatusCode(Response::HTTP_OK);
-$response->headers->set('Content-Type', 'text/html');
+
+// choose page base on URI and prepare the response
+if (in_array($uri, ['', '/'])) {
+    $response = new Response('This is home page!');
+} elseif ($uri === '/contact') {
+    $response = new Response('This is a contact page!');
+} elseif ($uri == '/blog') {
+    $response = new Response('This is a blog page!');
+} else {
+    $response = new Response('Not found.', Response::HTTP_NOT_FOUND);
+}
+
 
 // send response
 $response->send();

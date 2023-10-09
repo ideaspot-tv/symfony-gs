@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WeatherController extends AbstractController
 {
-    #[Route('/weather/highlander-says')]
+    #[Route('/weather/highlander-says', name: 'this_is_my_name')]
     public function highlanderSays(): Response
     {
         // draw an integer from 0 to 100

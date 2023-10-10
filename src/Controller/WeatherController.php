@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/weather')]
 class WeatherController extends AbstractController
@@ -20,6 +21,11 @@ class WeatherController extends AbstractController
 
         $json = [
             'forecast' => $forecast,
+            'self' => $this->generateUrl(
+                'app_weather_highlandersaysapi',
+                ['threshold' => $threshold],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            ),
         ];
 
         return new JsonResponse($json);

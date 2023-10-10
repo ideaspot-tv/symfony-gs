@@ -5,7 +5,7 @@ controllers:
     type: attribute
 
 
-#weather_highlander_says:
-#    path: /weather/highlander-says
-#    controller: App\Controller\WeatherController::highlanderSays
-#    methods: GET|POST
+weather_highlander_says:
+    path: /weather/highlander-says/{threshold}
+    controller: App\Controller\WeatherController::highlanderSays
+    methods: GET|POST

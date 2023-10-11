@@ -55,10 +55,10 @@ class WeatherController extends AbstractController
         $availableGuesses = ['snow', 'rain', 'hail'];
 
         if (!in_array($guess, $availableGuesses)) {
-            // throw $this->createNotFoundException('This guess is not found');
+            throw $this->createNotFoundException('This guess is not found');
 //            throw new NotFoundHttpException('This guess is not found (manually)');
 //            throw new BadRequestHttpException('Bad request');
-            throw new \Exception("Base exception");
+//            throw new \Exception("Base exception");
         }
 
         $forecast = "It's going to $guess";

@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -34,18 +35,20 @@ class WeatherController extends AbstractController
     }
 
     #[Route('/highlander-says/{threshold<\d+>?50}')]
-    public function highlanderSays(int $threshold): Response
+    public function highlanderSays(int $threshold, Request $request): Response
     {
-        // draw an integer from 0 to 100
-        $draw = random_int(0, 100);
+        $trials = $request->get('trials', 1);
 
-        // if the value is < 50 (%) then say it's gonna rain
-        // otherwise say it's gonna be sunny
-        $forecast = $draw < $threshold ? "It's going to rain" : "It's going to be sunny";
+        $forecasts = [];
 
-        // return response
+        for ($i = 0; $i < $trials; $i++) {
+            $draw = random_int(0, 100);
+            $forecast = $draw < $threshold ? "It's going to rain" : "It's going to be sunny";
+            $forecasts[] = $forecast;
+        }
+
         return $this->render('weather/highlander_says.html.twig', [
-            'forecast' => $forecast,
+            'forecasts' => $forecasts,
         ]);
     }
 
@@ -64,7 +67,7 @@ class WeatherController extends AbstractController
         $forecast = "It's going to $guess";
 
         return $this->render('weather/highlander_says.html.twig', [
-            'forecast' => $forecast,
+            'forecasts' => [$forecast],
         ]);
     }
 }

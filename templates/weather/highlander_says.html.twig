@@ -3,6 +3,12 @@
 {% block body %}
     <h1>Highlander Says</h1>
 
+    {% for message in app.flashes('info') %}
+        <div class="flash-info">
+            Info: {{ message }}
+        </div>
+    {% endfor %}
+
     {% for forecast in forecasts %}
         <p>{{ forecast }}</p>
     {% endfor %}

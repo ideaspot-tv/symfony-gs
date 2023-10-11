@@ -55,6 +55,10 @@ class WeatherController extends AbstractController
         $session = $requestStack->getSession();
         if ($threshold) {
             $session->set('threshold', $threshold);
+            $this->addFlash(
+                'info',
+                "You have set the threshold to $threshold."
+            );
         } else {
             $threshold = $session->get('threshold', 50);
         }

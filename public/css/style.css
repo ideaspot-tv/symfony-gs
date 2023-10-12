@@ -1,0 +1,22 @@
+nav.menu ul {
+    display: flex;
+    gap: 1em;
+    margin: 1em 0;
+    padding: 0;
+
+    list-style-type: none;
+}
+
+nav.menu ul a {
+    color: black;
+    text-decoration: none;
+}
+
+nav.menu ul a:hover {
+    text-decoration: underline;
+}
+
+nav.menu img {
+    width: 12px;
+    height: auto;
+}

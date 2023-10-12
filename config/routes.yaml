@@ -17,3 +17,9 @@ home:
         route: app_weather_highlandersays
         permanent: false
         threshold: 42
+
+privacy:
+    path: /privacy-policy
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: 'static/privacy_policy.html.twig'

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Location;
 use App\Repository\LocationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,27 +60,19 @@ class LocationController extends AbstractController
         return new JsonResponse(null);
     }
 
-    #[Route('/show/{name}')]
+    #[Route('/show/{location_name}')]
     public function show(
-        LocationRepository $locationRepository,
-        string $name,
+        #[MapEntity(mapping: ['location_name' => 'name'])]
+        Location $location,
     ): JsonResponse
     {
-        $location = $locationRepository->findOneByName($name);
-
-        if (!$location) {
-            throw $this->createNotFoundException();
-        }
-
-        $json = [
+        return new JsonResponse([
             'id' => $location->getId(),
             'name' => $location->getName(),
             'country' => $location->getCountryCode(),
             'lat' => $location->getLatitude(),
             'long' => $location->getLongitude(),
-        ];
-
-        return new JsonResponse($json);
+        ]);
     }
 
     #[Route('/')]

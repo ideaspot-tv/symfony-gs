@@ -58,4 +58,44 @@ class LocationController extends AbstractController
 
         return new JsonResponse(null);
     }
+
+    #[Route('/show/{name}')]
+    public function show(
+        LocationRepository $locationRepository,
+        string $name,
+    ): JsonResponse
+    {
+        $location = $locationRepository->findOneByName($name);
+
+        $json = [
+            'id' => $location->getId(),
+            'name' => $location->getName(),
+            'country' => $location->getCountryCode(),
+            'lat' => $location->getLatitude(),
+            'long' => $location->getLongitude(),
+        ];
+
+        return new JsonResponse($json);
+    }
+
+    #[Route('/')]
+    public function index(
+        LocationRepository $locationRepository,
+    ): JsonResponse
+    {
+        $locations = $locationRepository->findAll();
+
+        $json = [];
+        foreach ($locations as $location) {
+            $json[] = [
+                'id' => $location->getId(),
+                'name' => $location->getName(),
+                'country' => $location->getCountryCode(),
+                'lat' => $location->getLatitude(),
+                'long' => $location->getLongitude(),
+            ];
+        }
+
+        return new JsonResponse($json);
+    }
 }

@@ -1,0 +1,8 @@
+App\Entity\Location:
+  properties:
+    name:
+      - NotBlank:
+          message: "Location name must be specified"
+      - Length:
+          max: 5
+          maxMessage: "The length of location name cannot exceed {{ limit }} characters"

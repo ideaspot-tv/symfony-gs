@@ -4,5 +4,20 @@ App\Entity\Location:
       - NotBlank:
           message: "Location name must be specified"
       - Length:
-          max: 5
+          max: 255
           maxMessage: "The length of location name cannot exceed {{ limit }} characters"
+    countryCode:
+      - NotBlank: ~
+    latitude:
+      - NotBlank: ~
+      - Range:
+          min: -90
+          max: 90
+          notInRangeMessage: "The latitude must be between {{ min }} and {{ max }} degrees"
+    longitude:
+      - NotBlank: ~
+      - Range:
+          min: -180
+          max: 180
+          notInRangeMessage: "The longitude must be between {{ min }} and {{ max }} degrees"
+

@@ -6,6 +6,7 @@ use App\Entity\Location;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,7 +32,6 @@ class LocationFormTestType extends AbstractType
                 'html5' => true,
                 'scale' => 7,
                 'attr' => [
-                    'step' => 0.1,
                     'min' => -90,
                     'max' => 90,
                 ]
@@ -40,11 +40,11 @@ class LocationFormTestType extends AbstractType
                 'html5' => true,
                 'scale' => 7,
                 'attr' => [
-                    'step' => 0.1,
                     'min' => -90,
                     'max' => 90,
                 ]
             ])
+            ->add('submit', SubmitType::class)
         ;
     }
 

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
@@ -24,9 +25,11 @@ class Location
     private ?string $countryCode = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
+    #[Ignore]
     private ?string $latitude = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
+    #[Ignore]
     private ?string $longitude = null;
 
     #[ORM\OneToMany(mappedBy: 'location', targetEntity: Forecast::class)]

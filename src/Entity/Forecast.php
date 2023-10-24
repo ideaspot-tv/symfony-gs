@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ForecastRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: ForecastRepository::class)]
 class Forecast
@@ -22,6 +23,7 @@ class Forecast
 
     #[ORM\ManyToOne(inversedBy: 'forecasts')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Ignore]
     private ?Location $location = null;
 
     public function getId(): ?int

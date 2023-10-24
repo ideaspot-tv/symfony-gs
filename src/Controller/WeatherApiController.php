@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Location;
 use App\Repository\ForecastRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -126,5 +128,20 @@ class WeatherApiController extends AbstractController
         $em->flush();
 
         return $this->json(['success' => true]);
+    }
+
+    #[Route('/location')]
+    public function postLocation(
+        EntityManagerInterface $em,
+        #[MapRequestPayload] Location $location,
+    ): JsonResponse
+    {
+        $em->persist($location);
+        $em->flush();
+
+        return $this->json([
+            'success' => true,
+            'location' => $location,
+        ]);
     }
 }

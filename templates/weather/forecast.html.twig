@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_boxed.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Forecast for {{ city }}, {{ countryCode }}</h1>
 
     {% for forecast in forecasts %}

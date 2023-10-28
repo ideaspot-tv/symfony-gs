@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
             52.5200,
             13.4050
         );
-        $this->addBerlinForecasts($manager, $barcelona);
+        $this->addBerlinForecasts($manager, $berlin);
 
         $stettin = $this->addLocation(
             $manager,

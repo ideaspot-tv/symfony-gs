@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/weather/{countryCode}/{city}',
+    [\App\Http\Controllers\WeatherController::class, 'forecast']
+)->name('weather.forecast');

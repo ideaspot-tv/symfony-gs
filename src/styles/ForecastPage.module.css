@@ -1,0 +1,26 @@
+.forecastCard {
+    background-color: white;
+    margin-bottom: 1em;
+    padding: 1em;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.day {
+    font-size: 1.2em;
+    font-variant: small-caps;
+}
+
+.forecastCardDetails dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1em;
+}
+
+.forecastIcon {
+    font-size: 3em;
+}
+
+.temperature {
+    font-size: 3em;
+    font-weight: bold;
+}

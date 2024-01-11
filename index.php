@@ -1,8 +1,12 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+require_once __DIR__ . '/vendor/autoload.php';
+
 // read request
-$uri = $_SERVER['REQUEST_URI'];
-$foo = $_GET['foo'] ?? null;
+$request = Request::createFromGlobals();
+$uri = $request->getPathInfo();
+$foo = $request->get('foo', 'not set');
 
 // write response
 header('Content-Type: text/html');

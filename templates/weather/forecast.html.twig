@@ -4,29 +4,14 @@
     <h1>Forecast for {{ city }}, {{ countryCode }}</h1>
 
     {% for forecast in forecasts %}
-        <h2>{{ forecast.date | date('Y-m-d') }}</h2>
-
-        <dl>
-            <dt>Temperature</dt>
-            <dd>{{ forecast.temperatureCelsius }}</dd>
-
-            <dt>Feels Like</dt>
-            <dd>{{ forecast.flTemperatureCelsius }}</dd>
-
-            <dt>Pressure</dt>
-            <dd>{{ forecast.pressure }}</dd>
-
-            <dt>Humidity</dt>
-            <dd>{{ forecast.humidity }}%</dd>
-
-            <dt>Wind</dt>
-            <dd>{{ forecast.wind_speed }} m/s</dd>
-
-            <dt>Cloudiness</dt>
-            <dd>{{ forecast.cloudiness }}%</dd>
-
-            <dt>Icon</dt>
-            <dd>{{ forecast.icon }}%</dd>
-        </dl>
+        <div class="dailyForecast-{{ forecast['Date'] }}">
+            {% for key, item in forecast %}
+                {% if key == 'Date' %}
+                    <h2>{{key}}: {{item}}</h2>
+                {% else %}
+                    <div><strong>{{key}}:</strong> {{item}}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
     {% endfor %}
 {% endblock %}

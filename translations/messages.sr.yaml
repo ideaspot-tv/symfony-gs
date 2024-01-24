@@ -1,0 +1,10 @@
+weather:
+  key:
+    date: Датум
+    temperature: Температура
+    feels_like: Осећа као
+    pressure: Притисак
+    humidity: Влажност
+    wind: Ветар
+    cloudiness: Облачност
+    icon: Икона

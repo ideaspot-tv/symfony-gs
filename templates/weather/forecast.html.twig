@@ -3,15 +3,15 @@
 {% block body %}
     <h1>Forecast for {{ city }}, {{ countryCode }}</h1>
 
-    {% for forecast in forecasts %}
-        <div class="dailyForecast-{{ forecast['Date'] }}">
-            {% for key, item in forecast %}
-                {% if key == 'Date' %}
-                    <h2>{{key}}: {{item}}</h2>
-                {% else %}
-                    <div><strong>{{key}}:</strong> {{item}}</div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endfor %}
+{% for forecast in forecasts %}
+    <div class="dailyForecast-{{ forecast['date'] }}">
+        {% for key, item in forecast %}
+            {% if key == 'date' %}
+                <h2>{{('weather.key.' ~ key) | trans}}: {{item}}</h2>
+            {% else %}
+                <div><strong>{{('weather.key.' ~ key) | trans}}:</strong> {{item}}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}
 {% endblock %}

@@ -1,0 +1,10 @@
+weather:
+  key:
+    date: Date
+    temperature: Temperature
+    feels_like: Feels Like
+    pressure: Pressure
+    humidity: Humidity
+    wind: Wind
+    cloudiness: Cloudiness
+    icon: Icon

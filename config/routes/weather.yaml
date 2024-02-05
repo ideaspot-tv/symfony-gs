@@ -1,0 +1,7 @@
+highlander_says:
+  path: /highlander-says/{threshold<\d+>?50}
+  controller: App\Controller\WeatherController::highlanderSays
+
+highlander_says_guess:
+  path: /highlander-says/{guess}
+  controller: App\Controller\WeatherController::highlanderSaysGuess

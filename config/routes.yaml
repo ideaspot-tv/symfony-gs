@@ -5,10 +5,7 @@ controllers:
     type: attribute
 
 
-weather_highlander_says:
-    path: /weather/highlander-says/{threshold<\d+>?50}
-    controller: App\Controller\WeatherController::highlanderSays
-
-weather_highlander_says_guess:
-    path: /weather/highlander-says/{guess}
-    controller: App\Controller\WeatherController::highlanderSaysGuess
+weather:
+    resource: 'routes/weather.yaml'
+    prefix: '/weather'
+    name_prefix: 'weather_'

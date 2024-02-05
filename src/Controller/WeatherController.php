@@ -17,7 +17,7 @@ class WeatherController extends AbstractController
 
         // if the value is < 50 (%) then say it's gonna rain
         // otherwise say it's gonna be sunny
-        $forecast = $draw < 50 ? "It's going to rain" : "It's going to be sunny";
+        $forecast = $draw < $threshold ? "It's going to rain" : "It's going to be sunny";
 
         // return response
         return $this->render('weather/highlander_says.html.twig', [

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WeatherController extends AbstractController
 {
-    #[Route('/weather/highlander-says/{threshold}', name: 'this_is_my_name', methods: ['GET', 'POST'])]
+    #[Route('/weather/highlander-says/{threshold}', requirements: ['threshold' => '\d+'])]
     public function highlanderSays(int $threshold = 50): Response
     {
         // draw an integer from 0 to 100
@@ -20,6 +20,16 @@ class WeatherController extends AbstractController
         $forecast = $draw < $threshold ? "It's going to rain" : "It's going to be sunny";
 
         // return response
+        return $this->render('weather/highlander_says.html.twig', [
+            'forecast' => $forecast,
+        ]);
+    }
+
+    #[Route('/weather/highlander-says/{guess}')]
+    public function highlanderSaysGuess(string $guess): Response
+    {
+        $forecast = "It's going to $guess";
+
         return $this->render('weather/highlander_says.html.twig', [
             'forecast' => $forecast,
         ]);

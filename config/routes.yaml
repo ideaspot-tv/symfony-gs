@@ -8,6 +8,11 @@ controllers:
 #weather_highlander_says:
 #    path: /weather/highlander-says/{threshold}
 #    controller: App\Controller\WeatherController::highlanderSays
-#    methods: GET|POST
 #    defaults:
 #        threshold: 50
+#    requirements:
+#        threshold: \d+
+#
+#weather_highlander_says_guess:
+#    path: /weather/highlander-says/{guess}
+#    controller: App\Controller\WeatherController::highlanderSaysGuess

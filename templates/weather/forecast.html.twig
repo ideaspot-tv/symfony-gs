@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Forecast for {{ city }}, {{ countryCode }}</h1>
+
+    {% for forecast in forecasts %}
+        <h2>{{ forecast.date | date('Y-m-d') }}</h2>
+
+        <dl>
+            <dt>Temperature</dt>
+            <dd>{{ forecast.temperatureCelsius }}</dd>
+
+            <dt>Feels Like</dt>
+            <dd>{{ forecast.flTemperatureCelsius }}</dd>
+
+            <dt>Pressure</dt>
+            <dd>{{ forecast.pressure }}</dd>
+
+            <dt>Humidity</dt>
+            <dd>{{ forecast.humidity }}%</dd>
+
+            <dt>Wind</dt>
+            <dd>{{ forecast.wind_speed }} m/s</dd>
+
+            <dt>Cloudiness</dt>
+            <dd>{{ forecast.cloudiness }}%</dd>
+
+            <dt>Icon</dt>
+            <dd>{{ forecast.icon }}%</dd>
+        </dl>
+    {% endfor %}
+{% endblock %}

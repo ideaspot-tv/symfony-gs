@@ -51,7 +51,8 @@ class WeatherController extends AbstractController
     public function highlanderSays(
         Request $request,
         RequestStack $requestStack,
-        ?int $threshold = null
+        ?int $threshold = null,
+        #[MapQueryParameter] ?string $_format = 'html'
     ): Response
     {
         $session = $requestStack->getSession();
@@ -75,7 +76,7 @@ class WeatherController extends AbstractController
             $forecasts[] = $forecast;
         }
 
-        $html = $this->renderView('weather/highlander_says.html.twig', [
+        $html = $this->renderView("weather/highlander_says.{$_format}.twig", [
             'forecasts' => $forecasts,
             'threshold' => $threshold,
         ]);

@@ -7,6 +7,8 @@
         <p>{{ forecast }}</p>
     {% endfor %}
 
+    {% if threshold %}<p>Threshold: {{ threshold }}.</p>{% endif %}
+
     <nav>
         <a href="{{ path('app_weather_highlandersays', {
             threshold: 11,

@@ -2,7 +2,10 @@
 
 {% block body %}
     <h1>Highlander Says</h1>
-    <p>{{ forecast }}</p>
+
+    {% for forecast in forecasts %}
+        <p>{{ forecast }}</p>
+    {% endfor %}
 
     <nav>
         <a href="{{ path('app_weather_highlandersays', {

@@ -1,0 +1,8 @@
+navigation:
+  brand: "Symfony: Erste Schritte"
+  home: "Heim"
+  highlander: "Bergsteiger"
+
+weather:
+  highlander_says:
+    success: "Sie haben den Schwellenwert erfolgreich auf %threshold% gesetzt!"

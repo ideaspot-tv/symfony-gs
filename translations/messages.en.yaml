@@ -1,0 +1,8 @@
+navigation:
+  brand: "Symfony: Getting Started"
+  home: "Home"
+  highlander: "Highlander"
+
+weather:
+  highlander_says:
+    success: "You have successfully set the threshold to %threshold%!"

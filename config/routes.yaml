@@ -5,7 +5,15 @@ controllers:
     type: attribute
 
 
-weather:
-    resource: 'routes/weather.yaml'
-    prefix: '/weather'
-    name_prefix: 'weather_'
+#weather:
+#    resource: 'routes/weather.yaml'
+#    prefix: '/weather'
+#    name_prefix: 'weather_'
+
+home:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: app_weather_highlandersays
+        permanent: false
+        threshold: 42

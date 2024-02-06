@@ -28,6 +28,8 @@
     <script>
         const route = "{{ url('app_weather_highlandersays')|escape('js') }}";
         console.log(route);
+
+        console.log("{{ api_key|escape('js') }}")
     </script>
 {% endblock %}
 

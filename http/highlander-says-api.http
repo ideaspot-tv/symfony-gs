@@ -1,0 +1,9 @@
+### POST request from highlander API
+POST http://localhost:8000/weather/highlander-says/api
+Content-Type: application/json
+Accept: application/json
+
+{
+   "threshold": 50,
+   "trials": 10
+}

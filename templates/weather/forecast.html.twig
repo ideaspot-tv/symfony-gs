@@ -1,32 +1,50 @@
 {% extends 'layout_boxed.html.twig' %}
 
 {% block content %}
-    <h1>Forecast for {{ city }}, {{ countryCode }}</h1>
+    <div class="row mt-3">
+        <div class="col">
+            <h1>Forecast for {{ city }}, {{ countryCode }}</h1>
+        </div>
+    </div>
 
-    {% for forecast in forecasts %}
-        <h2>{{ forecast.date | date('Y-m-d') }}</h2>
+    <div class="row forecasts mt-3">
+        {% for forecast in forecasts %}
+            <div class="col-12 col-lg-6">
+                <div class="forecast-card">
+                    <div class="row">
+                        <div class="forecast-card-header col-xs-12 d-flex justify-content-between align-items-center">
+                            <div class="day">{{ forecast.date | date('l') }}</div>
+                            <div class="date">{{ forecast.date | date('d.m') }}</div>
+                        </div>
+                        <div class="forecast-card-general col-12 col-lg-6">
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <i class="bi-{{ forecast.icon }} forecast-icon"></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="temperature">{{ forecast.temperatureCelsius }}&deg;</div>
+                                    <div class="fl-temperature">Feels like {{ forecast.flTemperatureCelsius }}&deg;</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forecast-card-details col-12 col-lg-6 mt-3">
+                            <dl>
+                                <dt>Pressure</dt>
+                                <dd>{{ forecast.pressure }}</dd>
 
-        <dl>
-            <dt>Temperature</dt>
-            <dd>{{ forecast.temperatureCelsius }}</dd>
+                                <dt>Humidity</dt>
+                                <dd>{{ forecast.humidity }}%</dd>
 
-            <dt>Feels Like</dt>
-            <dd>{{ forecast.flTemperatureCelsius }}</dd>
+                                <dt>Wind</dt>
+                                <dd>{{ forecast.wind_speed }} m/s</dd>
 
-            <dt>Pressure</dt>
-            <dd>{{ forecast.pressure }}</dd>
-
-            <dt>Humidity</dt>
-            <dd>{{ forecast.humidity }}%</dd>
-
-            <dt>Wind</dt>
-            <dd>{{ forecast.wind_speed }} m/s</dd>
-
-            <dt>Cloudiness</dt>
-            <dd>{{ forecast.cloudiness }}%</dd>
-
-            <dt>Icon</dt>
-            <dd>{{ forecast.icon }}%</dd>
-        </dl>
-    {% endfor %}
+                                <dt>Cloudiness</dt>
+                                <dd>{{ forecast.cloudiness }}%</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

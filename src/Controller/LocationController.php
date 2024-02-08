@@ -66,13 +66,21 @@ class LocationController extends AbstractController
         Location $location,
     ): JsonResponse
     {
-        return new JsonResponse([
+        $json = [
             'id' => $location->getId(),
             'name' => $location->getName(),
             'country' => $location->getCountryCode(),
             'lat' => $location->getLatitude(),
             'long' => $location->getLongitude(),
-        ]);
+        ];
+
+        foreach ($location->getForecasts() as $forecast) {
+            $json['forecasts'][$forecast->getDate()->format('Y-m-d')] = [
+                'celsius' => $forecast->getCelsius(),
+            ];
+        }
+
+        return new JsonResponse($json);
     }
 
     #[Route('/')]

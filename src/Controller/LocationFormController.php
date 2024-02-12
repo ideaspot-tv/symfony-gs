@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Location;
+use App\Form\LocationFormTestType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -19,38 +20,7 @@ class LocationFormController extends AbstractController
     {
         $location = new Location();
 
-        $form = $this->createFormBuilder($location)
-            ->add('name', TextType::class)
-            ->add('countryCode', ChoiceType::class, [
-                'choices' => [
-                    '' => null,
-                    'Poland' => 'PL',
-                    'Germany' => 'DE',
-                    'France' => 'FR',
-                    'India' => 'IN',
-                    'United Kingdom' => 'UK',
-                    'United States' => 'US',
-                ]
-            ])
-            ->add('latitude', NumberType::class, [
-                'html5' => true,
-                'scale' => 7,
-                'attr' => [
-                    'step' => 0.1,
-                    'min' => -90,
-                    'max' => 90,
-                ]
-            ])
-            ->add('longitude', NumberType::class, [
-                'html5' => true,
-                'scale' => 7,
-                'attr' => [
-                    'step' => 0.1,
-                    'min' => -90,
-                    'max' => 90,
-                ]
-            ])
-            ->getForm();
+        $form = $this->createForm(LocationFormTestType::class, $location);
 
         return $this->render('location_form/new.html.twig', [
             'form' => $form,

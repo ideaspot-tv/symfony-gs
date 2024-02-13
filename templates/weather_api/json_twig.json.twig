@@ -1,0 +1,14 @@
+{
+    "id": {{ location.id }},
+    "name": "{{ location.name }}",
+    "country": "{{ location.countryCode }}",
+    {% if location.forecasts | length > 0 %}
+        "forecasts": {
+            {% for forecast in location.forecasts %}
+                "{{ forecast.date | date('Y-m-d') }}": {
+                    "celsius": {{ forecast.celsius }}
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        }
+    {% endif %}
+}

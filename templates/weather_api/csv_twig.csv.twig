@@ -1,0 +1,8 @@
+id,name,country,date,celsius
+{% for forecast in location.forecasts %}
+    {{- location.id }},
+    {{- location.name }},
+    {{- location.countryCode }},
+    {{- forecast.date | date('Y-m-d') }},
+    {{- forecast.celsius }}
+{% endfor %}

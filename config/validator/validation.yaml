@@ -34,3 +34,12 @@ App\Entity\Location:
           value: 0
           groups: ['edit']
 
+App\Model\HighlanderApiDTO:
+  properties:
+    threshold:
+      - Range:
+          min: 0
+          max: 100
+    trials:
+      - GreaterThanOrEqual:
+          value: 1

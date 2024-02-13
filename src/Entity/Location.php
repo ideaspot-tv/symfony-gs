@@ -25,11 +25,9 @@ class Location
     private ?string $countryCode = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
-    #[Ignore]
     private ?string $latitude = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
-    #[Ignore]
     private ?string $longitude = null;
 
     #[ORM\OneToMany(targetEntity: Forecast::class, mappedBy: 'location')]

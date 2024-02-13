@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Encoder\YamlEncoder;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/api/v1/weather')]
 class WeatherApiController extends AbstractController
@@ -59,5 +61,41 @@ class WeatherApiController extends AbstractController
         $response->headers->set('Content-Type', 'text/csv');
 
         return $response;
+    }
+
+    #[Route('/serializer/{id}')]
+    public function serializerAction(
+        Location $location,
+        SerializerInterface $serializer,
+    ): Response
+    {
+//        // json
+//        $content = $serializer->serialize($location, 'json');
+//
+//        $response = new Response($content);
+//        $response->headers->set('Content-Type', 'application/json');
+//
+//        return $response;
+
+
+//        // yaml
+//        $content = $serializer->serialize($location, 'yaml', [YamlEncoder::YAML_INLINE => 1]);
+//
+//        $response = new Response($content);
+//        $response->headers->set('Content-Type', 'text/yaml');
+//
+//        return $response;
+
+
+//        // csv
+//        $content = $serializer->serialize($location, 'csv');
+//
+//        $response = new Response($content);
+//        $response->headers->set('Content-Type', 'text/csv');
+//
+//        return $response;
+
+
+        return $this->json($location);
     }
 }

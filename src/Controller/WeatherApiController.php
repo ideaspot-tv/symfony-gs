@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Location;
+use App\Form\LocationApiType;
 use App\Repository\ForecastRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -142,5 +143,31 @@ class WeatherApiController extends AbstractController
             'success' => true,
             'location' => $location,
         ]);
+    }
+
+    #[Route('/location-form')]
+    public function postLocationForm(
+        Request $request,
+        EntityManagerInterface $em,
+    ): JsonResponse
+    {
+        $location = new Location();
+        $form = $this->createForm(LocationApiType::class, $location);
+        $form->submit($request->request->all());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($location);
+            $em->flush();
+
+            return $this->json([
+                'success' => true,
+                'location' => $location,
+            ]);
+        } else {
+            return $this->json([
+                'success' => false,
+                'errors' => (string) $form->getErrors()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 }

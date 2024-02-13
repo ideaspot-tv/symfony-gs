@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Twig\Environment;
 
 #[AsCommand(
     name: 'highlander:say',
@@ -19,6 +20,7 @@ class HighlanderSayCommand extends Command
 {
     public function __construct(
         private Highlander $highlander,
+        private Environment $twig,
     )
     {
         parent::__construct();
@@ -29,6 +31,7 @@ class HighlanderSayCommand extends Command
         $this
             ->addOption('threshold', 't', InputOption::VALUE_REQUIRED, 'The threshold for specifying the weather', 50)
             ->addOption('trials', 'r', InputOption::VALUE_REQUIRED, 'Count of forecasts to provide', 1)
+            ->addOption('csv', 'c', InputOption::VALUE_NONE, 'Render in CSV')
         ;
     }
 
@@ -38,10 +41,20 @@ class HighlanderSayCommand extends Command
 
         $threshold = $input->getOption('threshold');
         $trials = $input->getOption('trials');
+        $isCsv = $input->getOption('csv');
 
         $forecasts = $this->highlander->say($threshold, $trials);
 
-        $io->listing($forecasts);
+        if ($isCsv) {
+            $csv = $this->twig->render('weather/highlander_says.csv.twig', [
+                'forecasts' => $forecasts,
+                'threshold' => $threshold,
+            ]);
+            $io->writeln($csv);
+        } else {
+            $io->listing($forecasts);
+        }
+
 
         return Command::SUCCESS;
     }

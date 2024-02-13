@@ -1,0 +1,21 @@
+GET https://httpbin.org/get?show_env=1&foo=bar
+Accept: application/json
+
+### Post
+POST https://httpbin.org/post
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
+
+### Send POST request with body as parameters
+POST https://httpbin.org/post
+Content-Type: application/x-www-form-urlencoded
+
+id=999&value=content
+
+### DELETE
+DELETE https://httpbin.org/delete?id=123
+Accept: application/json
